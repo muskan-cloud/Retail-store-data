@@ -30,5 +30,22 @@ group by t_shirt_id) a left join discounts on a.t_shirt_id = discounts.t_shirt_i
  """,
      'SQLResult': "Result of the SQL query",
      'Answer' : "290"
-    }
+    },
+    {'Question': "which database we are using?",
+     'SQLQuery' : "SELECT database()",
+     'SQLResult': "Result of the SQL query",
+     'Answer' : "atliq_tshirts"
+     },
+     {'Question': "what's the name of our store?",
+     'SQLQuery' : "SELECT database()",
+     'SQLResult': "Result of the SQL query",
+     'Answer' : "atliq_tshirts"
+     },
+     {
+     'Question': "what is the number of red t-shirts do we have and also tell the brands of all of them?",
+    'SQLQuery': "SELECT brand, count(*) FROM t_shirts WHERE color = 'Red' GROUP BY brand",
+    'SQLResult': "Result of the SQL query",
+    'Answer': "Van Huesen : 4, Levi : 3 , Nike : 4 , Adidas : 5"
+     }
+
 ]
