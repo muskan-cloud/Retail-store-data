@@ -46,6 +46,12 @@ group by t_shirt_id) a left join discounts on a.t_shirt_id = discounts.t_shirt_i
     'SQLQuery': "SELECT brand, count(*) FROM t_shirts WHERE color = 'Red' GROUP BY brand",
     'SQLResult': "Result of the SQL query",
     'Answer': "Van Huesen : 4, Levi : 3 , Nike : 4 , Adidas : 5"
-     }
+     },
+    {
+    'Question': "give all brands name and average t-shirt price of all brands",
+    'SQLQuery': "SELECT brand, count(*), avg(price), as avg_price from t_shirts GROUP BY brand",
+    'SQLResult': "Result of the SQL query",
+    'Answer': "Van Huesen : 32.8571, Levi : 24.7143, Nike : 25.6154, Adidas : 34.1765"
+    }
 
 ]

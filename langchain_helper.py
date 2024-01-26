@@ -14,7 +14,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env (especially openai api key)
 
-
+llm = GooglePalm(google_api_key=os.environ["GOOGLE_API_KEY"], temperature=0.1)
 def get_few_shot_db_chain():
     db_user = "root"
     db_password = "iitmmuskan"
@@ -22,7 +22,8 @@ def get_few_shot_db_chain():
     db_name = "atliq_tshirts"
     db = SQLDatabase.from_uri(f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}",
                               sample_rows_in_table_info=3)
-    llm = GooglePalm(google_api_key=os.environ["GOOGLE_API_KEY"], temperature=0.1)
+    
+    
 
     embeddings = HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')
     to_vectorize = [" ".join(example.values()) for example in few_shots]
@@ -35,7 +36,7 @@ def get_few_shot_db_chain():
     Unless the user specifies in the question a specific number of examples to obtain, query for at most {top_k} results using the LIMIT clause as per MySQL. You can order the results to return the most informative data in the database.
     Never query for all columns from a table. You must query only the columns that are needed to answer the question. Wrap each column name in backticks (`) to denote them as delimited identifiers.
     Pay attention to use only the column names you can see in the tables below. Be careful to not query for columns that do not exist. Also, pay attention to which column is in which table.Also whenever the name of the store is asked please give the name of the database.
-    Pay attention to use CURDATE() function to get the current date, if the question involves "today".If the question is out of context from database or is not available in atliq_tshirts's database please use web.
+    Pay attention to use CURDATE() function to get the current date, if the question involves "today".
     
     Use the following format:
     
